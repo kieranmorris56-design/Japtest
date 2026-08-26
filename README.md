@@ -89,7 +89,7 @@ form with furigana above the kanji, an English gloss, and a real example
 sentence with its translation.
 
 ```bash
-pip3 install janome wordfreq genanki
+pip3 install janome wordfreq anki
 python3 build_core5k.py --count 5000 --out japanese_core5000.apkg
 ```
 
@@ -120,6 +120,9 @@ Particles and auxiliary verbs are excluded — content words only.
 | [JMdict](https://www.edrdg.org/jmdict/j_jmdict.html) via [jmdict-simplified](https://github.com/scriptin/jmdict-simplified) | dictionary forms, readings, English glosses | CC BY-SA 4.0, © EDRDG |
 | [Tatoeba](https://tatoeba.org) / Tanaka Corpus via [tatoeba-json](https://github.com/mwhirls/tatoeba-json) | example sentences and translations | CC BY 2.0 FR |
 | [wordfreq](https://pypi.org/project/wordfreq/) | frequency ranking | MIT |
+
+The deck is written with Anki's own `anki` library rather than genanki, so the
+package is valid by construction and imports on AnkiDroid as well as desktop.
 
 Attribution for both data sources is printed on the back of every card.
 

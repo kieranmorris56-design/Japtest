@@ -338,7 +338,11 @@ def build_deck(rows, deck_title, out_path):
                     row["example_reading"],
                 ],
                 tags=[band, "pos::" + row["pos_en"].replace(" ", "-")],
-                sort_field=str(row["rank"]).zfill(5),
+                # No numeric sort_field: notes.sfld is declared `integer`, so
+                # SQLite's type affinity silently stores "00001" as the INTEGER
+                # 1, and AnkiDroid then fails to read that column as UTF-8 text
+                # and rejects the deck. The default (first field) is the word
+                # itself, which is text.
             )
         )
 

@@ -22,17 +22,19 @@ import collections
 import html
 import json
 import os
-import random
 import re
+import shutil
 import sys
+import tempfile
 
 try:
     from janome.tokenizer import Tokenizer
     from wordfreq import top_n_list
-    import genanki
+    from anki.collection import (Collection, ExportAnkiPackageOptions,
+                                 DeckIdLimit)
 except ImportError as exc:
     sys.exit(f"Missing dependency ({exc.name}). "
-             "Run: pip3 install janome wordfreq genanki")
+             "Run: pip3 install janome wordfreq anki")
 
 KANJI_RE = re.compile(r"[一-鿿々〆ヶ]")
 
@@ -247,26 +249,63 @@ Definition: JMdict, EDRDG (CC BY-SA 4.0)</div>
 """
 
 
+FIELDS = ("WordFurigana", "Word", "Reading", "PartOfSpeech",
+          "Meaning", "Rank", "ExampleFurigana", "Translation")
+
+
 def build(rows, title, out_path):
-    model = genanki.Model(
-        1978451266, "Japanese Core Vocabulary (furigana)",
-        fields=[{"name": n} for n in ("WordFurigana", "Word", "Reading",
-                                      "PartOfSpeech", "Meaning", "Rank",
-                                      "ExampleFurigana", "Translation")],
-        templates=[{"name": "Recognition", "qfmt": FRONT, "afmt": BACK}],
-        css=CSS)
-    deck = genanki.Deck(random.Random(title).randrange(1 << 30, 1 << 31), title)
-    for r in rows:
-        lo = ((r["rank"] - 1) // 500) * 500
-        deck.add_note(genanki.Note(
-            model=model,
-            fields=[r["word_furigana"], r["word"], r["reading"], r["pos"],
-                    r["meaning"], str(r["rank"]), r["example_furigana"],
-                    r["translation"]],
-            tags=[f"rank::{lo+1:04d}-{lo+500:04d}",
-                  "pos::" + r["pos"].replace(" ", "-").replace("(", "").replace(")", "")],
-            sort_field=str(r["rank"]).zfill(5)))
-    genanki.Package(deck).write_to_file(out_path)
+    """Write the .apkg using Anki's own library, so the package is valid by
+    construction.
+
+    genanki produced a legacy schema-11 collection in which notes.sfld is
+    declared `integer`; a purely numeric sort field ("00001") therefore hit
+    SQLite's type affinity and was stored as an INTEGER rather than TEXT.
+    AnkiDroid's backend reads that column as a UTF-8 string and rejected the
+    whole file. Letting Anki build and export the collection avoids hand-
+    writing the schema at all.
+    """
+    tmp = tempfile.mkdtemp()
+    try:
+        col = Collection(os.path.join(tmp, "collection.anki2"))
+
+        mm = col.models
+        nt = mm.new("Japanese Core Vocabulary (furigana)")
+        for name in FIELDS:
+            mm.add_field(nt, mm.new_field(name))
+        tpl = mm.new_template("Recognition")
+        tpl["qfmt"], tpl["afmt"] = FRONT, BACK
+        mm.add_template(nt, tpl)
+        nt["css"] = CSS
+        mm.add(nt)
+        nt = mm.by_name("Japanese Core Vocabulary (furigana)")
+
+        deck_id = col.decks.id(title)
+
+        # Notes are added in rank order, so new cards are introduced most
+        # frequent first.
+        for r in rows:
+            note = col.new_note(nt)
+            lo = ((r["rank"] - 1) // 500) * 500
+            values = (r["word_furigana"], r["word"], r["reading"], r["pos"],
+                      r["meaning"], str(r["rank"]), r["example_furigana"],
+                      r["translation"])
+            for name, value in zip(FIELDS, values):
+                note[name] = value
+            note.tags = [f"rank::{lo+1:04d}-{lo+500:04d}",
+                         "pos::" + re.sub(r"[^a-z-]", "", r["pos"].replace(" ", "-"))]
+            col.add_note(note, deck_id)
+
+        # legacy=True emits the widely-compatible collection.anki2 +
+        # collection.anki21 pair that every current AnkiDroid build imports.
+        col.export_anki_package(
+            out_path=out_path,
+            options=ExportAnkiPackageOptions(
+                with_scheduling=False, with_deck_configs=False,
+                with_media=True, legacy=True),
+            limit=DeckIdLimit(deck_id))
+        col.close()
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 # ---------------------------------------------------------------------- main
