@@ -78,3 +78,55 @@ runs anywhere.
 - `janome` — pure-Python Japanese tokeniser, dictionary bundled
 - `genanki` — writes `.apkg` files
 - `yt-dlp`, `openai-whisper` and `ffmpeg` — for the transcription step only
+
+---
+
+# Japanese Core 5000 deck
+
+`build_core5k.py` builds a frequency-ranked deck of the most common Japanese
+words — independent of any video. Each card shows the word in its dictionary
+form with furigana above the kanji, an English gloss, and a real example
+sentence with its translation.
+
+```bash
+pip3 install janome wordfreq genanki
+python3 build_core5k.py --count 5000 --out japanese_core5000.apkg
+```
+
+### Card layout
+
+- **Front:** the word with furigana (rendered by Anki's `{{furigana:}}` filter,
+  so kana sits above the kanji it belongs to) plus its part of speech.
+- **Back:** English gloss, frequency rank, and an example sentence — itself
+  fully furigana-annotated — with an English translation.
+
+Cards are tagged `rank::0001-0500`, `rank::0501-1000` … so you can study in
+frequency order, and `pos::verb`, `pos::noun` and so on.
+
+### How the ranking works
+
+Ordering comes from [`wordfreq`](https://pypi.org/project/wordfreq/), whose
+Japanese frequencies aggregate subtitles, Wikipedia, news and web text, so the
+order reflects real usage rather than the makeup of the example corpus. Only
+words that actually occur in the sentence corpus are eligible, which guarantees
+every card has a genuine example.
+
+Particles and auxiliary verbs are excluded — content words only.
+
+### Data sources
+
+| Source | Used for | Licence |
+|---|---|---|
+| [JMdict](https://www.edrdg.org/jmdict/j_jmdict.html) via [jmdict-simplified](https://github.com/scriptin/jmdict-simplified) | dictionary forms, readings, English glosses | CC BY-SA 4.0, © EDRDG |
+| [Tatoeba](https://tatoeba.org) / Tanaka Corpus via [tatoeba-json](https://github.com/mwhirls/tatoeba-json) | example sentences and translations | CC BY 2.0 FR |
+| [wordfreq](https://pypi.org/project/wordfreq/) | frequency ranking | MIT |
+
+Attribution for both data sources is printed on the back of every card.
+
+### Known limitations
+
+Automated sense selection is not perfect. Where a written form maps to several
+dictionary entries, the builder prefers the most central one (`人` resolves to
+the noun "person" rather than the suffix "-ian"), but a first-listed gloss can
+still be narrower than the word's everyday meaning — `月` glosses as "Moon"
+where "month" is often meant. Treat the gloss as a prompt, not a definition.
