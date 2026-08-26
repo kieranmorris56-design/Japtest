@@ -133,3 +133,28 @@ dictionary entries, the builder prefers the most central one (`人` resolves to
 the noun "person" rather than the suffix "-ian"), but a first-listed gloss can
 still be narrower than the word's everyday meaning — `月` glosses as "Moon"
 where "month" is often meant. Treat the gloss as a prompt, not a definition.
+
+### If AnkiDroid refuses the .apkg
+
+AnkiDroid 2.24.0 on Android 16 can fail any `.apkg` import with
+`500: Failed to read '...': stream did not contain valid UTF-8`
+— including decks that import fine on desktop, and even byte-identical
+round-trips of a deck that previously worked
+([AnkiDroid #21430](https://github.com/ankidroid/Anki-Android/issues/21430)).
+It is a bug in the app's Kotlin/JNI layer handing the file to its Rust core,
+not a problem with the deck.
+
+Two ways around it:
+
+1. **Import the plain-text file instead.** `apkg_to_csv.py` produces
+   `japanese_core5000.txt`, which AnkiDroid's CSV importer reads on affected
+   devices. Furigana is baked in as HTML ruby, so it renders in the stock
+   Basic notetype with no template filter needed.
+
+   ```bash
+   python3 apkg_to_csv.py --apkg japanese_core5000.apkg --out japanese_core5000.txt
+   ```
+
+2. **Import the .apkg on desktop Anki and sync.** The package is valid, so
+   desktop imports it normally; syncing through AnkiWeb then delivers the deck
+   to the phone without AnkiDroid ever reading a file.
