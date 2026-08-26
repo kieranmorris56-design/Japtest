@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.apkg
+*_wordlist.tsv
+transcript*.vtt
+transcript*.srt
+audio.*
