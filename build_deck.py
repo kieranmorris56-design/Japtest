@@ -8,7 +8,8 @@ Pipeline:
   3. Tokenise with Janome (MeCab/IPADIC), taking each token's *dictionary form*
      so conjugated verbs/adjectives collapse onto their lemma
      (e.g. 食べました / 食べて / 食べない  ->  食べる).
-  4. Deduplicate: one entry per dictionary form.
+  4. Deduplicate: one entry per dictionary form, dropping particles and
+     auxiliary verbs (は, が, ます, です ...) unless --include-particles.
   5. Rank by number of occurrences, highest first.
   6. Attach an example sentence taken from the transcript itself.
   7. Write out deck.apkg (importable into Anki) plus a TSV for review.
@@ -16,6 +17,8 @@ Pipeline:
 Usage:
     python3 build_deck.py --transcript transcript.txt \
         --out japanese_deck.apkg --title "Japanese Video Vocabulary"
+
+Content words only (particles removed) is the default.
 """
 
 import argparse
@@ -360,8 +363,9 @@ def main():
     ap.add_argument("--transcript", required=True, help="transcript .txt/.vtt/.srt")
     ap.add_argument("--out", default="japanese_deck.apkg", help="output .apkg path")
     ap.add_argument("--title", default="Japanese Video Vocabulary", help="deck name")
-    ap.add_argument("--content-words-only", action="store_true",
-                    help="drop particles and auxiliary verbs")
+    ap.add_argument("--include-particles", action="store_true",
+                    help="also make cards for particles and auxiliary verbs "
+                         "(off by default: they swamp the frequency ranking)")
     ap.add_argument("--min-frequency", type=int, default=1,
                     help="only include words appearing at least this many times")
     args = ap.parse_args()
@@ -371,8 +375,9 @@ def main():
         sys.exit(f"No usable text found in {args.transcript}")
 
     sentences = split_sentences(text)
+    content_words_only = not args.include_particles
     counts, pos_of, reading_of, occurrences, sent_readings = analyse(
-        sentences, args.content_words_only
+        sentences, content_words_only
     )
 
     if not counts:
