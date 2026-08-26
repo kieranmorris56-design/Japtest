@@ -158,3 +158,9 @@ Two ways around it:
 2. **Import the .apkg on desktop Anki and sync.** The package is valid, so
    desktop imports it normally; syncing through AnkiWeb then delivers the deck
    to the phone without AnkiDroid ever reading a file.
+
+### Audio
+
+See [TTS_SETUP.md](TTS_SETUP.md) to have the device speak each word and example
+sentence via `{{tts}}`, using `make_tts_import.py` to build the import file.
+No audio files are bundled, so nothing needs licensing and the deck stays small.
