@@ -21,7 +21,9 @@ import html
 import json
 import os
 import re
+import shutil
 import sys
+import tempfile
 
 try:
     from janome.tokenizer import Tokenizer
@@ -253,6 +255,93 @@ def build_rows(points, corpus, tok, per_card, common):
 
 LEVEL_ORDER = {"N5": 0, "N4": 1, "N3": 2, "N2": 3, "N1": 4}
 
+FIELDS = ("Point", "PointRuby", "Level", "Meaning", "Formation", "Notes",
+          "Contrast", "Examples")
+
+APKG_CSS = """
+.card { font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+  font-size:20px; color:#1f2430; background:#fbfbfd; text-align:center;
+  padding:16px; }
+.lvl { display:inline-block; font-size:11px; letter-spacing:.12em;
+  color:#6b7280; border:1px solid #d8dde6; border-radius:99px;
+  padding:2px 10px; margin-bottom:14px; }
+.pt { font-size:38px; font-weight:600; line-height:1.9; margin-bottom:10px; }
+.mean { font-size:22px; color:#14532d; margin-bottom:14px; }
+.form { font-size:15px; color:#475569; background:#f1f4f9; border-radius:8px;
+  padding:8px 12px; display:inline-block; }
+.note { font-size:15px; color:#5b6472; margin-top:14px; line-height:1.7; }
+.vs { font-size:14px; color:#8a5a2b; background:#fdf6ec; border-radius:8px;
+  padding:8px 12px; margin-top:12px; line-height:1.6; }
+.exlabel { font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  color:#a7aebb; margin:22px 0 6px; }
+.ex { border-top:1px solid #e6eaf0; padding:12px 0; }
+.ex .jp { font-size:21px; line-height:2.2; }
+.ex .en { font-size:15px; color:#5b6472; font-style:italic; margin-top:4px; }
+ruby rt { font-size:.5em; color:#6b7280; font-weight:400; }
+"""
+
+# Front carries no furigana, by request: {{Point}} is the bare form and
+# {{PointRuby}} (back only) is the annotated one.
+APKG_FRONT = ('<div class="lvl">{{Level}}</div>'
+              '<div class="pt">{{Point}}</div>')
+
+APKG_BACK = """<div class="lvl">{{Level}}</div>
+<div class="pt">{{PointRuby}}</div>
+<div class="mean">{{Meaning}}</div>
+<div class="form">{{Formation}}</div>
+{{#Notes}}<div class="note">{{Notes}}</div>{{/Notes}}
+{{#Contrast}}<div class="vs">{{Contrast}}</div>{{/Contrast}}
+<div class="exlabel">Examples</div>
+{{Examples}}
+"""
+
+
+def build_apkg(rows, title, out_path):
+    """Write an .apkg through Anki's own library, so it is valid by
+    construction. Notes are added in N5-to-N1 order, so new cards are
+    introduced easiest first."""
+    try:
+        from anki.collection import (Collection, ExportAnkiPackageOptions,
+                                     DeckIdLimit)
+    except ImportError:
+        sys.exit("Missing dependency for --apkg. Run: pip3 install anki")
+
+    tmp = tempfile.mkdtemp()
+    try:
+        col = Collection(os.path.join(tmp, "collection.anki2"))
+        mm = col.models
+        nt = mm.new("JLPT Grammar")
+        for name in FIELDS:
+            mm.add_field(nt, mm.new_field(name))
+        tpl = mm.new_template("Recognition")
+        tpl["qfmt"], tpl["afmt"] = APKG_FRONT, APKG_BACK
+        mm.add_template(nt, tpl)
+        nt["css"] = APKG_CSS
+        mm.add(nt)
+        nt = mm.by_name("JLPT Grammar")
+
+        deck_id = col.decks.id(title)
+        for r in rows:
+            note = col.new_note(nt)
+            values = (r["point"], r["point_ruby"], r["level"], r["meaning"],
+                      r["formation"], r["notes"], r["contrast"], r["examples"])
+            for name, value in zip(FIELDS, values):
+                note[name] = value
+            note.tags = [f"jlpt::{r['level']}"]
+            col.add_note(note, deck_id)
+
+        # legacy=True emits the widely compatible collection.anki2 +
+        # collection.anki21 pair that current AnkiDroid and desktop both read.
+        col.export_anki_package(
+            out_path=out_path,
+            options=ExportAnkiPackageOptions(
+                with_scheduling=False, with_deck_configs=False,
+                with_media=True, legacy=True),
+            limit=DeckIdLimit(deck_id))
+        col.close()
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -260,6 +349,8 @@ def main():
     ap.add_argument("--corpus", default="/home/user/data/jpn-eng-examples.json")
     ap.add_argument("--out", default="jlpt_grammar.txt")
     ap.add_argument("--examples-per-card", type=int, default=4)
+    ap.add_argument("--apkg", help="also write an .apkg for desktop Anki")
+    ap.add_argument("--title", default="JLPT Grammar N5-N1")
     args = ap.parse_args()
 
     points, seen = [], {}
@@ -303,6 +394,11 @@ def main():
     by_level = {}
     for r in rows:
         by_level[r["level"]] = by_level.get(r["level"], 0) + 1
+
+    if args.apkg:
+        build_apkg(rows, args.title, args.apkg)
+        print(f"Deck  : {args.apkg} "
+              f"({os.path.getsize(args.apkg)/1024:.0f} KB)")
 
     print(f"\nWrote {len(rows)} cards to {args.out} "
           f"({os.path.getsize(args.out)/1024:.0f} KB)")
