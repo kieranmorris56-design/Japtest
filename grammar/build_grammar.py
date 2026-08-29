@@ -28,6 +28,7 @@ try:
 except ImportError:
     sys.exit("Missing dependency. Run: pip3 install janome")
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from readings import find_override
 
 KANJI_RE = re.compile(r"[一-鿿々〆ヶ]")

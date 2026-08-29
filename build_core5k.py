@@ -36,6 +36,8 @@ except ImportError as exc:
     sys.exit(f"Missing dependency ({exc.name}). "
              "Run: pip3 install janome wordfreq anki")
 
+from readings import find_override
+
 KANJI_RE = re.compile(r"[一-鿿々〆ヶ]")
 
 
@@ -423,30 +425,52 @@ def main():
 def sentence_furigana(text, tok, target_forms, word):
     """Ruby-annotate a sentence token by token, bolding the target word.
 
+    Irregular counter compounds are resolved before tokenisation: Janome
+    splits 九時 into 九 + 時 and reads it きゅうじ instead of くじ, and 一人
+    as いちにん instead of ひとり.
+
     Anki's furigana filter consumes at most one space immediately before a
-    ruby group, so a space there is invisible and is *required*: without it
-    the ruby swallows the preceding kana (を食[た]べる would annotate "を食").
-    A space anywhere else renders as a visible gap, which Japanese text must
-    not have — so one is inserted only where the filter will eat it, and never
+    ruby group, so a space there is invisible and required -- without it the
+    ruby swallows the preceding kana. A space anywhere else would show as a
+    visible gap, so one is inserted only where the filter eats it, and never
     before a <b> tag, whose ">" already bounds the group.
     """
-    out = ""
-    bolded = False
-    for t in tok.tokenize(text):
-        surf = t.surface
-        if has_kanji(surf) and t.reading and t.reading != "*":
-            piece = furigana(surf, kata_to_hira(t.reading))
-        else:
-            piece = html.escape(surf, quote=False)
-        # Match the surface as the corpus recorded it, else fall back to the
-        # token's dictionary form, which catches inflections the corpus
-        # annotation spelled differently (座っ / 座って for 座る).
-        if not bolded and (surf in target_forms or t.base_form == word):
-            piece = f"<b>{piece}</b>"
-            bolded = True
+    out, i, buf, bolded = "", 0, "", False
+
+    def emit(piece):
+        nonlocal out
         if out and "[" in piece and piece[0] != "<" and has_kanji(piece[0]):
             out += " "
         out += piece
+
+    def flush():
+        nonlocal buf, bolded
+        for t in tok.tokenize(buf):
+            surf = t.surface
+            if has_kanji(surf) and t.reading and t.reading != "*":
+                piece = furigana(surf, kata_to_hira(t.reading))
+            else:
+                piece = html.escape(surf, quote=False)
+            if not bolded and (surf in target_forms or t.base_form == word):
+                piece = f"<b>{piece}</b>"
+                bolded = True
+            emit(piece)
+        buf = ""
+
+    while i < len(text):
+        key, reading = find_override(text, i)
+        if key:
+            flush()
+            piece = furigana(key, reading)
+            if not bolded and key in target_forms:
+                piece = f"<b>{piece}</b>"
+                bolded = True
+            emit(piece)
+            i += len(key)
+        else:
+            buf += text[i]
+            i += 1
+    flush()
     return out
 
 
