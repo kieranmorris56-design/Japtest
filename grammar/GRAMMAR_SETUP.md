@@ -3,7 +3,7 @@
 413 grammar cards, one per grammar point. Furigana is baked in as HTML ruby
 and appears on the **back only**, so the front stays a clean recognition prompt.
 
-Two files, and **the first one needs no setup**.
+Three files, and **none of them need setup** except the field-split variant.
 
 ## `jlpt_grammar_basic.txt` — recommended
 
@@ -101,3 +101,53 @@ sentence from the Tatoeba / Tanaka Corpus (CC BY 2.0 FR) is added alongside.
 a sentence with no closing punctuation, a duplicate point, or stray non-Japanese
 text inside a Japanese sentence. `normalise.py` merges any point that appears at
 more than one level, keeping the fullest version at the earliest level.
+
+
+---
+
+## `jlpt_grammar_cloze.txt` — production practice
+
+The recognition deck asks you to turn 〜ざるを得ない into "have no choice but to".
+That is the easy direction. These cards run the other way: the sentence with
+the grammar blanked, plus the English, and you supply the pattern.
+
+    雨のため、中止 ［ ？ ］ 。          →   せざるを得ない
+    "have no choice but to cancel"
+
+406 of the 413 points produced one. The 7 skipped are patterns that cannot be
+located as a literal span in their example — 〜ば〜ほど is split across the
+sentence, and the passive and causative-passive are inflections rather than
+strings. A card blanking the wrong span teaches the wrong thing, so those are
+left out rather than guessed at.
+
+Imports into the stock Basic note type. Tagged `cloze`, so you can suspend the
+whole set if the daily load gets heavy, and study them separately from
+recognition.
+
+## Function tags
+
+Every card also carries an `fn::` tag naming the job the grammar does:
+
+    fn::conditional   fn::concessive   fn::causation   fn::time
+    fn::relation      fn::evidential   fn::obligation  fn::possibility
+    fn::comparison    fn::limitation   fn::emphasis    fn::degree
+    fn::volition      fn::aspect       fn::quotation   fn::politeness
+    fn::listing       fn::tendency     fn::voice       fn::purpose
+    fn::addition      fn::topic        fn::existence   fn::negation
+    fn::question      fn::nominalisation                fn::discourse
+
+Level tags let you study N3 alone; function tags let you sit down with every
+way of saying "although" at once — `tag:fn::concessive` pulls のに, くせに,
+ものの and にもかかわらず together, which is when the register and attitude
+differences actually separate. That is where most N2/N1 errors live.
+
+All 413 points are classified. Keyword rules on the English meaning cover most
+of them; the rest are assigned by hand in `functions.py`, because loosening the
+rules far enough to catch them mislabelled everything else.
+
+## Suggested study settings
+
+Grammar cards carry more text than vocabulary and take longer per review, so
+they cost more than their count suggests. With the vocabulary deck running too,
+around 5 new grammar cards a day is a sustainable pace. Start with recognition
+only, and unsuspend the cloze set once the recognition cards feel easy.

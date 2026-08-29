@@ -32,6 +32,7 @@ except ImportError:
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from readings import find_override
+from functions import classify
 
 KANJI_RE = re.compile(r"[一-鿿々〆ヶ]")
 
@@ -247,6 +248,7 @@ def build_rows(points, corpus, tok, per_card, common):
             "notes": clean(html.escape(p.get("notes", ""))),
             "contrast": clean(html.escape(p.get("contrast", ""))),
             "examples": clean(ex_html),
+            "fn": classify(p),
             "n_corpus": len(found),
             "n_authored": n_auth,
         })
@@ -327,7 +329,8 @@ def build_apkg(rows, title, out_path):
                       r["formation"], r["notes"], r["contrast"], r["examples"])
             for name, value in zip(FIELDS, values):
                 note[name] = value
-            note.tags = [f"jlpt::{r['level']}"]
+            note.tags = ([f"jlpt::{r['level']}"] +
+                         [f"fn::{t}" for t in r["fn"]])
             col.add_note(note, deck_id)
 
         # legacy=True emits the widely compatible collection.anki2 +
@@ -388,7 +391,8 @@ def main():
             fh.write("\t".join([
                 r["point"], r["point_ruby"], r["level"], r["meaning"],
                 r["formation"], r["notes"], r["contrast"], r["examples"],
-                f"jlpt::{r['level']}",
+                " ".join([f"jlpt::{r['level']}"] +
+                         [f"fn::{t}" for t in r["fn"]]),
             ]) + "\n")
 
     by_level = {}
