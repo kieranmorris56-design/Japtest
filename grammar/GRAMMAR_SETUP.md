@@ -1,10 +1,30 @@
 # JLPT Grammar N5–N1 — import guide
 
-`jlpt_grammar.txt` holds 413 grammar cards, one per grammar point, importable
-on the phone alone. Furigana is baked in as HTML ruby and appears on the **back
-only**, so the front stays a clean recognition prompt.
+413 grammar cards, one per grammar point. Furigana is baked in as HTML ruby
+and appears on the **back only**, so the front stays a clean recognition prompt.
 
-## 1. Create the note type (once)
+Two files, and **the first one needs no setup**.
+
+## `jlpt_grammar_basic.txt` — recommended
+
+Everything is folded into two columns with all styling inlined, so it imports
+straight into Anki's stock **Basic** note type:
+
+**⋮ → Import → jlpt_grammar_basic.txt** — that is the whole procedure. No note
+type to build, no templates to paste.
+
+Cards arrive tagged `jlpt::N5` … `jlpt::N1`, so you can study one level at a
+time.
+
+## `jlpt_grammar.txt` — only if you want separate fields
+
+This is the same content split across eight fields, which is worth having if
+you intend to restyle the cards or search on individual fields. It renders
+**nothing on the back until both the note type and the templates below are in
+place** — a cloned Basic note type still has templates pointing at `{{Front}}`
+and `{{Back}}`, fields the new type does not have, so the back comes out blank.
+
+### 1. Create the note type
 
 AnkiDroid: **⋮ → Manage Note Types → Add → Clone: Basic**, name it
 `JLPT Grammar`, then under **Fields** add these eight, in this exact order —
@@ -12,7 +32,7 @@ the import maps columns to fields positionally:
 
     Point   PointRuby   Level   Meaning   Formation   Notes   Contrast   Examples
 
-## 2. Paste the card templates
+### 2. Paste the card templates
 
 Under **Cards** for that note type.
 
@@ -54,7 +74,7 @@ Under **Cards** for that note type.
     .ex .en { font-size:15px; color:#5b6472; font-style:italic; margin-top:4px; }
     ruby rt { font-size:.5em; color:#6b7280; font-weight:400; }
 
-## 3. Import
+### 3. Import
 
 **⋮ → Import**, choose `jlpt_grammar.txt`, select the `JLPT Grammar` note type.
 The `#columns:` and `#tags column:` lines in the file do the rest. Cards arrive
