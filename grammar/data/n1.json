@@ -1,0 +1,1553 @@
+[
+{
+"level": "N1",
+"point": "〜あっての",
+"meaning": "only possible because of ~",
+"formation": "Noun + あっての + Noun",
+"notes": "Without the first, the second could not exist.",
+"contrast": "あっての is a precondition; おかげで is gratitude.",
+"search": "あっての",
+"examples": [
+{
+"jp": "お客様あっての商売です。",
+"en": "Business exists only because of customers."
+},
+{
+"jp": "努力あっての成功だ。",
+"en": "Success exists only because of effort."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜いかんによっては",
+"meaning": "depending on ~",
+"formation": "Noun + いかんによっては",
+"notes": "Very formal: the outcome hinges on the named factor.",
+"contrast": "いかん is bureaucratic; 次第 is ordinary formal.",
+"search": "いかん",
+"examples": [
+{
+"jp": "結果のいかんによっては、計画を変更する。",
+"en": "Depending on the results, we will change the plan."
+},
+{
+"jp": "事情のいかんによらず、受け付けます。",
+"en": "We will accept it regardless of circumstances."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜いかんによらず",
+"meaning": "regardless of ~",
+"formation": "Noun + のいかんによらず",
+"notes": "Formal, common in official notices.",
+"contrast": "いかんによらず is bureaucratic; にかかわらず is general.",
+"search": "いかんに",
+"examples": [
+{
+"jp": "理由のいかんによらず、返金しません。",
+"en": "Regardless of the reason, we do not refund."
+},
+{
+"jp": "結果のいかんによらず、挑戦は無駄ではない。",
+"en": "Regardless of the result, the attempt is not wasted."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜かたわら",
+"meaning": "while also ~",
+"formation": "Verb dictionary form / Noun の + かたわら",
+"notes": "A secondary long-term activity alongside a main one.",
+"contrast": "かたわら is a parallel occupation; ながら is momentary.",
+"search": "かたわら",
+"examples": [
+{
+"jp": "彼は教師のかたわら、小説を書いている。",
+"en": "Alongside teaching, he writes novels."
+},
+{
+"jp": "仕事のかたわら勉強を続けた。",
+"en": "He continued studying alongside his job."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜がてら",
+"meaning": "while also doing ~",
+"formation": "Verb ます-stem / Noun + がてら",
+"notes": "One outing serving two purposes.",
+"contrast": "がてら is a combined errand; ついでに is incidental.",
+"search": "がてら",
+"examples": [
+{
+"jp": "散歩がてら買い物に行った。",
+"en": "I went shopping while taking a walk."
+},
+{
+"jp": "見物がてら訪ねてみた。",
+"en": "I visited while sightseeing."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜がゆえに",
+"meaning": "because of ~ (literary)",
+"formation": "Plain form / Noun (である) + がゆえに",
+"notes": "Formal written causation.",
+"contrast": "がゆえに is literary; ので is everyday.",
+"search": "がゆえに",
+"examples": [
+{
+"jp": "真剣であるがゆえに厳しくなる。",
+"en": "Because he is serious, he becomes strict."
+},
+{
+"jp": "若いがゆえの過ちだ。",
+"en": "It is a mistake born of youth."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜が早いか",
+"reading": "〜がはやいか",
+"meaning": "the instant ~",
+"formation": "Verb dictionary form + が早いか",
+"notes": "Two actions almost simultaneous; the second is abrupt.",
+"contrast": "が早いか is literary; とたん is more common.",
+"search": "が早いか",
+"examples": [
+{
+"jp": "ベルが鳴るが早いか、教室を飛び出した。",
+"en": "The instant the bell rang, he dashed out of the classroom."
+},
+{
+"jp": "座るが早いか、眠ってしまった。",
+"en": "No sooner had he sat down than he fell asleep."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜が最後",
+"reading": "〜がさいご",
+"meaning": "once ~ happens, that's it",
+"formation": "Verb た-form + が最後",
+"notes": "After this point the bad result is unavoidable.",
+"contrast": "が最後 is inevitable doom; たら is a plain condition.",
+"search": "が最後",
+"examples": [
+{
+"jp": "彼は寝たが最後、朝まで起きない。",
+"en": "Once he falls asleep, he won't wake until morning."
+},
+{
+"jp": "言ったが最後、後戻りできない。",
+"en": "Once you say it, there's no going back."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜きらいがある",
+"meaning": "tend to (undesirably) ~",
+"formation": "Verb dictionary form / Noun の + きらいがある",
+"notes": "A formal, critical observation of a tendency.",
+"contrast": "きらいがある is formal criticism; がち is everyday.",
+"search": "きらいがある",
+"examples": [
+{
+"jp": "彼は物事を悲観的に考えるきらいがある。",
+"en": "He tends to think about things pessimistically."
+},
+{
+"jp": "最近の若者は本を読まないきらいがある。",
+"en": "Young people these days tend not to read."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜きわまりない",
+"meaning": "extremely ~",
+"formation": "な-adjective stem + きわまりない",
+"notes": "Formal, usually for negative qualities: 危険きわまりない.",
+"contrast": "きわまりない judges harshly; とても is neutral.",
+"search": "きわまりない",
+"examples": [
+{
+"jp": "危険きわまりない行為だ。",
+"en": "It is an extremely dangerous act."
+},
+{
+"jp": "失礼きわまりない態度。",
+"en": "An extremely rude attitude."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜くらいなら",
+"meaning": "rather than ~",
+"formation": "Verb dictionary form + くらいなら",
+"notes": "Rejects one option as worse than a drastic alternative.",
+"contrast": "くらいなら rejects; より compares neutrally.",
+"search": "くらいなら",
+"examples": [
+{
+"jp": "謝るくらいなら、最初からするな。",
+"en": "If you're going to apologise, don't do it in the first place."
+},
+{
+"jp": "待つくらいなら歩いて行く。",
+"en": "Rather than wait, I'll walk."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜こそすれ",
+"meaning": "may ~ but certainly not",
+"formation": "Verb ます-stem / Noun + こそすれ",
+"notes": "Affirms one thing while flatly denying the opposite.",
+"contrast": "こそすれ is literary contrast; は〜が is plain.",
+"search": "こそすれ",
+"examples": [
+{
+"jp": "感謝こそすれ、恨むことはない。",
+"en": "I may be grateful, but I certainly do not resent it."
+},
+{
+"jp": "増えこそすれ、減ることはない。",
+"en": "It may increase, but it will certainly not decrease."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜こととて",
+"meaning": "because it is ~ (apology)",
+"formation": "Noun の / plain form + こととて",
+"notes": "Archaic, apologetic reason-giving.",
+"contrast": "こととて apologises; ので is neutral.",
+"search": "こととて",
+"examples": [
+{
+"jp": "慣れぬこととて、失礼しました。",
+"en": "Being unaccustomed to it, I was rude."
+},
+{
+"jp": "急なこととて、準備ができていない。",
+"en": "As it is sudden, we are not prepared."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜すら",
+"meaning": "even ~",
+"formation": "Noun + すら",
+"notes": "A formal, emphatic version of さえ.",
+"contrast": "すら is literary; さえ is everyday.",
+"search": "すら",
+"examples": [
+{
+"jp": "名前すら知らなかった。",
+"en": "I didn't even know his name."
+},
+{
+"jp": "水すら飲めない状態だった。",
+"en": "He was in a state where he couldn't even drink water."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ずくめ",
+"meaning": "nothing but ~",
+"formation": "Noun + ずくめ",
+"notes": "A run of the same thing: いいことずくめ, 黒ずくめ.",
+"contrast": "ずくめ is a run of the same; だらけ is an unpleasant covering.",
+"search": "ずくめ",
+"examples": [
+{
+"jp": "今年はいいことずくめだった。",
+"en": "This year was nothing but good things."
+},
+{
+"jp": "黒ずくめの服装だった。",
+"en": "He was dressed all in black."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ずにはすまない",
+"meaning": "cannot get away without ~ing",
+"formation": "Verb ない-stem + ずにはすまない",
+"notes": "Social pressure makes the action unavoidable.",
+"contrast": "ずにはすまない is social duty; ざるを得ない is circumstance.",
+"search": "ずにはすまない",
+"examples": [
+{
+"jp": "壊したのだから、弁償せずにはすまない。",
+"en": "Since I broke it, I can't get away without paying for it."
+},
+{
+"jp": "謝らずにはすまないだろう。",
+"en": "He won't get away without apologising."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜そばから",
+"meaning": "no sooner than ~, again and again",
+"formation": "Verb dictionary / た-form + そばから",
+"notes": "The action is undone as fast as it is done, repeatedly.",
+"contrast": "そばから repeats; とたん is a single sudden event.",
+"search": "そばから",
+"examples": [
+{
+"jp": "覚えるそばから忘れてしまう。",
+"en": "I forget things as fast as I learn them."
+},
+{
+"jp": "片付けるそばから散らかされる。",
+"en": "It gets messed up as soon as I tidy it."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜たりとも",
+"meaning": "not even a single ~",
+"formation": "一 + counter + たりとも + negative",
+"notes": "Emphatic total denial, formal.",
+"contrast": "たりとも is formal; も〜ない is plain.",
+"search": "たりとも",
+"examples": [
+{
+"jp": "一日たりとも忘れたことはない。",
+"en": "I have not forgotten for even a single day."
+},
+{
+"jp": "一円たりとも無駄にできない。",
+"en": "We cannot waste even a single yen."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜だに",
+"meaning": "even just ~",
+"formation": "Verb dictionary form / Noun + だに",
+"notes": "Fixed literary phrases: 想像だに, 微動だにしない.",
+"contrast": "だに is archaic; さえ is modern.",
+"search": "だに",
+"examples": [
+{
+"jp": "想像だにしなかった出来事だ。",
+"en": "It was an event I had not even imagined."
+},
+{
+"jp": "彼は微動だにしなかった。",
+"en": "He did not stir in the slightest."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜てからというもの",
+"meaning": "ever since ~",
+"formation": "Verb て-form + からというもの",
+"notes": "A lasting change dating from one event.",
+"contrast": "てからというもの stresses lasting change; てから is plain sequence.",
+"search": "からというもの",
+"examples": [
+{
+"jp": "日本に来てからというもの、毎日が楽しい。",
+"en": "Ever since I came to Japan, every day has been fun."
+},
+{
+"jp": "引っ越してからというもの、体調がいい。",
+"en": "Ever since I moved, my health has been good."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜てやまない",
+"meaning": "~ deeply and endlessly",
+"formation": "Verb て-form + やまない",
+"notes": "For lasting emotions: 願ってやまない, 愛してやまない.",
+"contrast": "てやまない is literary; たい is plain desire.",
+"search": "てやまない",
+"examples": [
+{
+"jp": "皆様のご健康を願ってやみません。",
+"en": "I wish you all continued good health."
+},
+{
+"jp": "故郷を愛してやまない。",
+"en": "I love my hometown endlessly."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜であるまいし",
+"meaning": "it's not as if ~",
+"formation": "Noun + じゃあるまいし",
+"notes": "Dismisses an unreasonable premise, in speech.",
+"contrast": "じゃあるまいし rebukes; ではないから explains.",
+"search": "あるまいし",
+"examples": [
+{
+"jp": "子どもじゃあるまいし、自分でやりなさい。",
+"en": "You're not a child, so do it yourself."
+},
+{
+"jp": "初めてじゃあるまいし、心配ない。",
+"en": "It's not as if it's the first time; don't worry."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜であれ",
+"meaning": "whatever / even if it is ~",
+"formation": "Noun / question word + であれ",
+"notes": "Concedes any case whatsoever.",
+"contrast": "であれ is literary; でも is everyday.",
+"search": "であれ",
+"examples": [
+{
+"jp": "どんな理由であれ、暴力は許されない。",
+"en": "Whatever the reason, violence is not permitted."
+},
+{
+"jp": "誰であれ、規則は守るべきだ。",
+"en": "Whoever it is, the rules should be kept."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜であれ〜であれ",
+"meaning": "whether ~ or ~",
+"formation": "Noun + であれ + Noun + であれ",
+"notes": "Neither alternative changes the outcome.",
+"contrast": "A paired concessive; single であれ concedes one case.",
+"search": "であれ",
+"examples": [
+{
+"jp": "晴れであれ雨であれ、決行します。",
+"en": "Whether fine or rainy, we will go ahead."
+},
+{
+"jp": "男であれ女であれ、条件は同じだ。",
+"en": "Whether man or woman, the conditions are the same."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜であろうと",
+"meaning": "no matter what ~",
+"formation": "Noun + であろうと",
+"notes": "Formal variant of であれ.",
+"contrast": "であろうと and であれ are interchangeable in most contexts.",
+"search": "であろうと",
+"examples": [
+{
+"jp": "どんな困難であろうと乗り越える。",
+"en": "Whatever the difficulty, I will overcome it."
+},
+{
+"jp": "相手が誰であろうと関係ない。",
+"en": "It doesn't matter who the other party is."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ですら",
+"meaning": "even ~ (emphatic)",
+"formation": "Noun + ですら",
+"notes": "Emphatic even, presenting an extreme case.",
+"contrast": "ですら is emphatic; でも is neutral.",
+"search": "ですら",
+"examples": [
+{
+"jp": "専門家ですら分からない問題だ。",
+"en": "It is a problem even experts cannot solve."
+},
+{
+"jp": "親ですら知らなかった。",
+"en": "Even his parents did not know."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜とあって",
+"meaning": "because it is ~ (special situation)",
+"formation": "Noun / plain form + とあって",
+"notes": "A special circumstance produces a natural result.",
+"contrast": "とあって explains a special case; ので is general.",
+"search": "とあって",
+"examples": [
+{
+"jp": "連休とあって、道路が混んでいる。",
+"en": "Being a long weekend, the roads are crowded."
+},
+{
+"jp": "人気歌手が来るとあって、会場は満員だ。",
+"en": "With a popular singer coming, the venue is full."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜とあれば",
+"meaning": "if it is for ~",
+"formation": "Noun / plain form + とあれば",
+"notes": "For this special reason the speaker will do anything.",
+"contrast": "とあれば is a special condition; なら is general.",
+"search": "とあれば",
+"examples": [
+{
+"jp": "子どものためとあれば、何でもする。",
+"en": "If it's for my child, I'll do anything."
+},
+{
+"jp": "必要とあれば、すぐ伺います。",
+"en": "If it is necessary, I will come at once."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜といえども",
+"meaning": "even though / even ~",
+"formation": "Noun / plain form + といえども",
+"notes": "Literary concession, often with an authority or extreme case.",
+"contrast": "といえども is archaic and formal; でも is everyday.",
+"search": "といえども",
+"examples": [
+{
+"jp": "専門家といえども、間違うことはある。",
+"en": "Even an expert can make mistakes."
+},
+{
+"jp": "子どもといえども許されない。",
+"en": "Even a child would not be excused."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜といったらない",
+"meaning": "extremely / indescribably ~",
+"formation": "Noun / adjective + といったらない",
+"notes": "An emotional emphasis, positive or negative.",
+"contrast": "といったらない is emotional; きわまりない is formal.",
+"search": "といったらない",
+"examples": [
+{
+"jp": "あの時の嬉しさといったらなかった。",
+"en": "My joy at that moment was indescribable."
+},
+{
+"jp": "暑いといったらない。",
+"en": "It's unbearably hot."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ところを",
+"meaning": "although it is a time when ~",
+"formation": "Noun の / plain form + ところを",
+"notes": "Set courtesy phrase acknowledging the listener's inconvenience.",
+"contrast": "ところを is a polite formula; のに is a plain contrast.",
+"search": "ところを",
+"examples": [
+{
+"jp": "お忙しいところをありがとうございます。",
+"en": "Thank you, though you are busy."
+},
+{
+"jp": "お休みのところを失礼します。",
+"en": "Sorry to disturb you during your rest."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜としたところで",
+"meaning": "even if / even supposing",
+"formation": "Plain form + としたところで",
+"notes": "Concedes a hypothesis while denying its usefulness.",
+"contrast": "としたところで concedes a hypothesis; にしても is broader.",
+"search": "としたところで",
+"examples": [
+{
+"jp": "今から急いだところで、間に合わない。",
+"en": "Even if we hurry now, we won't make it."
+},
+{
+"jp": "謝ったところで許されないだろう。",
+"en": "Even if you apologise, you probably won't be forgiven."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜とはいうものの",
+"meaning": "having said that ~",
+"formation": "Plain form + とはいうものの",
+"notes": "Concedes then qualifies, in written style.",
+"contrast": "Interchangeable with とはいえ, slightly longer.",
+"search": "とはいうものの",
+"examples": [
+{
+"jp": "暖かくなったとはいうものの、朝晩は冷える。",
+"en": "It has warmed up, but mornings and evenings are still cold."
+},
+{
+"jp": "便利だとはいうものの、高すぎる。",
+"en": "Convenient though it is, it's too expensive."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜とはいえ",
+"meaning": "although / that said",
+"formation": "Plain form / Noun + とはいえ",
+"notes": "Concedes the previous statement, then qualifies it.",
+"contrast": "とはいえ concedes formally; でも is casual.",
+"search": "とはいえ",
+"examples": [
+{
+"jp": "春とはいえ、まだ寒い。",
+"en": "Although it's spring, it's still cold."
+},
+{
+"jp": "安いとはいえ、質は悪くない。",
+"en": "Cheap though it is, the quality isn't bad."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜とばかりに",
+"meaning": "as if to say ~",
+"formation": "Plain form / quotation + とばかりに",
+"notes": "Behaviour that conveys an unspoken message.",
+"contrast": "とばかりに shows attitude; ように shows manner.",
+"search": "とばかりに",
+"examples": [
+{
+"jp": "彼は帰れとばかりにドアを開けた。",
+"en": "He opened the door as if to say \"get out\"."
+},
+{
+"jp": "待っていたとばかりに飛び出した。",
+"en": "He rushed out as if he had been waiting."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ともなく",
+"meaning": "without particularly ~ing",
+"formation": "Verb dictionary form + ともなく",
+"notes": "An action done absent-mindedly.",
+"contrast": "ともなく is unintentional; ないで is deliberate omission.",
+"search": "ともなく",
+"examples": [
+{
+"jp": "見るともなく窓の外を見ていた。",
+"en": "I was gazing out of the window without really looking."
+},
+{
+"jp": "聞くともなく聞いていた。",
+"en": "I was listening without really listening."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ともなると",
+"meaning": "once it reaches the stage of ~",
+"formation": "Noun / Verb dictionary form + ともなると",
+"notes": "At this level, things naturally differ.",
+"contrast": "ともなると marks a threshold; になると is plain.",
+"search": "ともなると",
+"examples": [
+{
+"jp": "社長ともなると、責任が重い。",
+"en": "Once you become president, the responsibility is heavy."
+},
+{
+"jp": "冬ともなると、雪が深くなる。",
+"en": "Once winter comes, the snow gets deep."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ないではおかない",
+"meaning": "will inevitably ~",
+"formation": "Verb ない-form + ではおかない",
+"notes": "Strong determination, or an effect that must follow.",
+"contrast": "ないではおかない is forceful; ずにはいられない is an urge.",
+"search": "ないではおかない",
+"examples": [
+{
+"jp": "真実を明らかにしないではおかない。",
+"en": "I will not rest until the truth is revealed."
+},
+{
+"jp": "その話は人を感動させないではおかない。",
+"en": "That story cannot fail to move people."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ないまでも",
+"meaning": "even if not ~, at least",
+"formation": "Verb ない-form + までも",
+"notes": "Sets a lower acceptable standard.",
+"contrast": "ないまでも lowers the bar; ないで simply negates.",
+"search": "ないまでも",
+"examples": [
+{
+"jp": "毎日とは言わないまでも、週に一度は運動したい。",
+"en": "If not every day, I'd like to exercise at least weekly."
+},
+{
+"jp": "完璧でないまでも、よくできている。",
+"en": "If not perfect, it is well made."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ないものか",
+"meaning": "isn't there some way to ~?",
+"formation": "Verb ない-form + ものか",
+"notes": "A wish that something could be done.",
+"contrast": "ないものか wishes; たい states desire.",
+"search": "ないものか",
+"examples": [
+{
+"jp": "何とかならないものか。",
+"en": "Isn't there some way to manage it?"
+},
+{
+"jp": "もっと早くできないものだろうか。",
+"en": "Isn't there some way to do it faster?"
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ながらに",
+"meaning": "while remaining ~",
+"formation": "Noun / Verb ます-stem + ながらに",
+"notes": "Set expressions: 涙ながらに, 生まれながらに.",
+"contrast": "ながらに is fixed and literary; ながら is productive.",
+"search": "ながらに",
+"examples": [
+{
+"jp": "彼女は涙ながらに語った。",
+"en": "She spoke through her tears."
+},
+{
+"jp": "生まれながらに才能があった。",
+"en": "He had talent from birth."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ならいざしらず",
+"meaning": "if it were ~ that would be one thing, but",
+"formation": "Noun / plain form + ならいざしらず",
+"notes": "Sets an acceptable case against the unacceptable actual one.",
+"contrast": "ならいざしらず contrasts cases; なら is a plain condition.",
+"search": "いざしらず",
+"examples": [
+{
+"jp": "子どもならいざしらず、大人がそんなことをするとは。",
+"en": "If it were a child that would be one thing, but for an adult to do that..."
+},
+{
+"jp": "昔ならいざしらず、今は通用しない。",
+"en": "It might have worked in the past, but not now."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ならでは",
+"meaning": "unique to / only possible for ~",
+"formation": "Noun + ならでは",
+"notes": "Praises something only that person or place can offer.",
+"contrast": "ならでは praises uniqueness; だけ merely limits.",
+"search": "ならでは",
+"examples": [
+{
+"jp": "これは京都ならではの味です。",
+"en": "This is a flavour unique to Kyoto."
+},
+{
+"jp": "職人ならではの技だ。",
+"en": "It is a skill only a craftsman has."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜なり",
+"meaning": "the moment ~ (unexpected)",
+"formation": "Verb dictionary form + なり",
+"notes": "The subject does something surprising immediately after.",
+"contrast": "なり implies surprise; や否や is neutral immediacy.",
+"search": "なり",
+"examples": [
+{
+"jp": "彼は部屋に入るなり、泣き出した。",
+"en": "The moment he entered the room, he burst into tears."
+},
+{
+"jp": "席に着くなり、話し始めた。",
+"en": "As soon as he sat down, he started talking."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜にして",
+"meaning": "only at / even at ~",
+"formation": "Noun + にして",
+"notes": "Marks a notable stage or standard: 六十にして, 一瞬にして.",
+"contrast": "にして marks a threshold; で is plain.",
+"search": "にして",
+"examples": [
+{
+"jp": "六十にして新しい趣味を始めた。",
+"en": "At sixty, he took up a new hobby."
+},
+{
+"jp": "一瞬にして景色が変わった。",
+"en": "In an instant the scenery changed."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜にたえない",
+"meaning": "unbearable to ~ / beyond words",
+"formation": "Verb dictionary form / Noun + にたえない",
+"notes": "Either too painful to watch, or an overwhelming feeling.",
+"contrast": "にたえない is literary; てたまらない is spoken.",
+"search": "にたえない",
+"examples": [
+{
+"jp": "その光景は見るにたえない。",
+"en": "That scene is unbearable to look at."
+},
+{
+"jp": "感謝にたえません。",
+"en": "I am more grateful than I can say."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜には及ばない",
+"reading": "〜にはおよばない",
+"meaning": "there is no need to / not as good as",
+"formation": "Verb dictionary form / Noun + には及ばない",
+"notes": "Two senses: unnecessary, or falling short in comparison.",
+"contrast": "には及ばない dismisses need; までもない stresses obviousness.",
+"search": "及ばない",
+"examples": [
+{
+"jp": "わざわざ来るには及びません。",
+"en": "There is no need for you to come all this way."
+},
+{
+"jp": "彼の腕前には及ばない。",
+"en": "I am no match for his skill."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜にひきかえ",
+"meaning": "in contrast to ~",
+"formation": "Noun / plain form の + にひきかえ",
+"notes": "A sharp contrast, often with an evaluation.",
+"contrast": "にひきかえ contrasts strongly; に対して is neutral.",
+"search": "にひきかえ",
+"examples": [
+{
+"jp": "兄にひきかえ、弟はよく働く。",
+"en": "In contrast to the elder brother, the younger works hard."
+},
+{
+"jp": "去年にひきかえ、今年は忙しい。",
+"en": "In contrast to last year, this year is busy."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜にもまして",
+"meaning": "even more than ~",
+"formation": "Noun + にもまして",
+"notes": "Exceeds an already high standard.",
+"contrast": "にもまして surpasses; より simply compares.",
+"search": "にもまして",
+"examples": [
+{
+"jp": "去年にもまして今年は暑い。",
+"en": "This year is even hotter than last."
+},
+{
+"jp": "何にもまして健康が大事だ。",
+"en": "Health matters more than anything."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜に堪えない",
+"reading": "〜にたえない",
+"meaning": "cannot bear to ~",
+"formation": "Verb dictionary form + に堪えない",
+"notes": "Too unpleasant to continue, or overwhelming gratitude.",
+"contrast": "に堪えない is literary; たくない is plain.",
+"search": "に堪えない",
+"examples": [
+{
+"jp": "読むに堪えない文章だ。",
+"en": "It is writing one cannot bear to read."
+},
+{
+"jp": "感謝の念に堪えません。",
+"en": "I am overwhelmed with gratitude."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜に至る",
+"reading": "〜にいたる",
+"meaning": "reach the point of ~",
+"formation": "Verb dictionary form / Noun + に至る",
+"notes": "A long process culminating in a state.",
+"contrast": "に至る is a culmination; になる is a plain change.",
+"search": "に至",
+"examples": [
+{
+"jp": "長い交渉の末、合意に至った。",
+"en": "After long negotiations, we reached an agreement."
+},
+{
+"jp": "議論はついに結論に至った。",
+"en": "The discussion finally reached a conclusion."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜に至るまで",
+"reading": "〜にいたるまで",
+"meaning": "right down to ~",
+"formation": "Noun + に至るまで",
+"notes": "Emphasises the full extent of a range.",
+"contrast": "に至るまで stresses completeness; まで is a plain limit.",
+"search": "に至るまで",
+"examples": [
+{
+"jp": "服から靴に至るまで、全部黒だ。",
+"en": "From clothes right down to shoes, everything is black."
+},
+{
+"jp": "細部に至るまで確認した。",
+"en": "I checked it down to the smallest detail."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜に足る",
+"reading": "〜にたる",
+"meaning": "worthy of ~",
+"formation": "Verb dictionary form / Noun + に足る",
+"notes": "Formal: deserving of trust, respect or mention.",
+"contrast": "に足る is worthiness; 価値がある is plainer.",
+"search": "に足る",
+"examples": [
+{
+"jp": "彼は信頼するに足る人物だ。",
+"en": "He is a person worthy of trust."
+},
+{
+"jp": "満足に足る結果だった。",
+"en": "It was a result worthy of satisfaction."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜の極み",
+"reading": "〜のきわみ",
+"meaning": "the extreme of ~",
+"formation": "Noun + の極み",
+"notes": "An absolute extreme, good or bad: 感激の極み, 贅沢の極み.",
+"contrast": "の極み is a state at its limit; の至り is a feeling at its height.",
+"search": "の極み",
+"examples": [
+{
+"jp": "贅沢の極みだ。",
+"en": "It is the height of luxury."
+},
+{
+"jp": "疲労の極みに達した。",
+"en": "I reached the extreme of exhaustion."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜の至り",
+"reading": "〜のいたり",
+"meaning": "the height of ~",
+"formation": "Noun + の至り",
+"notes": "Ceremonial: 光栄の至り, 赤面の至り.",
+"contrast": "の至り is a peak of feeling; の極み is an extreme state.",
+"search": "の至り",
+"examples": [
+{
+"jp": "このような賞をいただき、光栄の至りです。",
+"en": "Receiving such an award is the greatest honour."
+},
+{
+"jp": "若気の至りでした。",
+"en": "It was the folly of youth."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜はさておき",
+"meaning": "setting ~ aside",
+"formation": "Noun + はさておき",
+"notes": "Postpones one topic to address a more pressing one.",
+"contrast": "はさておき postpones; はともかく dismisses.",
+"search": "はさておき",
+"examples": [
+{
+"jp": "冗談はさておき、本題に入ろう。",
+"en": "Joking aside, let's get to the main point."
+},
+{
+"jp": "結果はさておき、努力は認めたい。",
+"en": "Setting the result aside, I want to acknowledge the effort."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜はともかく",
+"meaning": "leaving ~ aside",
+"formation": "Noun + はともかく",
+"notes": "Dismisses one factor as less important.",
+"contrast": "はともかく judges it less important; はさておき merely defers it.",
+"search": "はともかく",
+"examples": [
+{
+"jp": "見た目はともかく、味はいい。",
+"en": "Appearance aside, the taste is good."
+},
+{
+"jp": "値段はともかく、品質が問題だ。",
+"en": "Price aside, quality is the issue."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ばこそ",
+"meaning": "precisely because ~",
+"formation": "ば-form + こそ",
+"notes": "Literary emphasis on the true reason.",
+"contrast": "ばこそ is literary; からこそ is everyday.",
+"search": "ばこそ",
+"examples": [
+{
+"jp": "愛すればこそ厳しく言うのだ。",
+"en": "It is precisely because I love you that I speak strictly."
+},
+{
+"jp": "健康であればこそ働ける。",
+"en": "It is precisely because I am healthy that I can work."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜べからず",
+"meaning": "must not ~ (prohibition)",
+"formation": "Verb dictionary form + べからず",
+"notes": "Archaic prohibition, seen on signs and notices.",
+"contrast": "べからず is archaic; てはいけない is modern.",
+"search": "べからず",
+"examples": [
+{
+"jp": "ここに入るべからず。",
+"en": "Do not enter here."
+},
+{
+"jp": "初心忘るべからず。",
+"en": "Never forget your original resolve."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜べく",
+"meaning": "in order to ~",
+"formation": "Verb dictionary form + べく (する→すべく)",
+"notes": "Literary purpose, common in written reports.",
+"contrast": "べく is literary; ために is everyday.",
+"search": "べく",
+"examples": [
+{
+"jp": "問題を解決すべく、会議を開いた。",
+"en": "We held a meeting in order to solve the problem."
+},
+{
+"jp": "真実を知るべく調査を始めた。",
+"en": "We began an investigation in order to learn the truth."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜まじき",
+"meaning": "unbecoming / must not be",
+"formation": "Verb dictionary form + まじき + Noun",
+"notes": "Archaic: 許すまじき, あるまじき. Set phrases only.",
+"contrast": "まじき is archaic; べきではない is modern.",
+"search": "まじき",
+"examples": [
+{
+"jp": "教師にあるまじき行為だ。",
+"en": "It is conduct unbecoming a teacher."
+},
+{
+"jp": "許すまじき罪だ。",
+"en": "It is an unforgivable crime."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜まで (extreme)",
+"meaning": "go so far as to ~",
+"formation": "Verb て-form + まで / Noun + まで",
+"notes": "An extreme measure the speaker finds notable.",
+"contrast": "てまで is an extreme; ても is a plain concession.",
+"search": "てまで",
+"examples": [
+{
+"jp": "借金してまで買う必要はない。",
+"en": "There's no need to go so far as borrowing money to buy it."
+},
+{
+"jp": "徹夜してまで仕上げた。",
+"en": "He finished it, going so far as to stay up all night."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜までもない",
+"meaning": "there is no need to ~",
+"formation": "Verb dictionary form + までもない",
+"notes": "The action is too obvious or minor to bother with.",
+"contrast": "までもない is unnecessary; ことはない reassures.",
+"search": "までもない",
+"examples": [
+{
+"jp": "言うまでもないことだ。",
+"en": "It goes without saying."
+},
+{
+"jp": "わざわざ行くまでもない。",
+"en": "There's no need to go all that way."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜まみれ",
+"meaning": "smeared with ~",
+"formation": "Noun + まみれ",
+"notes": "Physically coated in a substance: 泥まみれ, 血まみれ.",
+"contrast": "まみれ is physical; だらけ can be abstract.",
+"search": "まみれ",
+"examples": [
+{
+"jp": "作業を終えて汗まみれになった。",
+"en": "After the work I was covered in sweat."
+},
+{
+"jp": "ほこりまみれの本を見つけた。",
+"en": "I found a dust-covered book."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜もさることながら",
+"meaning": "~ is true, but even more so",
+"formation": "Noun + もさることながら",
+"notes": "Acknowledges the first, then stresses the second.",
+"contrast": "もさることながら escalates; だけでなく merely adds.",
+"search": "もさることながら",
+"examples": [
+{
+"jp": "味もさることながら、値段も魅力的だ。",
+"en": "The taste aside, the price is attractive too."
+},
+{
+"jp": "技術もさることながら、人柄がいい。",
+"en": "His skill is one thing, but his character is even better."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ものか",
+"meaning": "as if / absolutely not",
+"formation": "Plain form + ものか",
+"notes": "Emphatic refusal or denial in speech.",
+"contrast": "ものか refuses emphatically; ない is plain.",
+"search": "ものか",
+"examples": [
+{
+"jp": "あんな店、二度と行くものか。",
+"en": "As if I'd ever go to that shop again."
+},
+{
+"jp": "負けるものか。",
+"en": "There's no way I'll lose."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ものを",
+"meaning": "if only ~ (regret / reproach)",
+"formation": "Plain form + ものを",
+"notes": "Regret that a better outcome was missed, with reproach.",
+"contrast": "ものを reproaches; のに merely regrets.",
+"search": "ものを",
+"examples": [
+{
+"jp": "早く言えばよかったものを。",
+"en": "If only you had said so sooner."
+},
+{
+"jp": "相談してくれればよかったものを。",
+"en": "If only you had consulted me."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜や否や",
+"reading": "〜やいなや",
+"meaning": "as soon as ~",
+"formation": "Verb dictionary form + や否や",
+"notes": "Literary; the second event follows immediately.",
+"contrast": "や否や is written; たとたん is spoken.",
+"search": "や否や",
+"examples": [
+{
+"jp": "彼は家に着くや否や、寝てしまった。",
+"en": "As soon as he got home, he fell asleep."
+},
+{
+"jp": "発表されるや否や、話題になった。",
+"en": "The moment it was announced, it became a topic."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ゆえに",
+"meaning": "because of / therefore",
+"formation": "Noun の / plain form + ゆえに",
+"notes": "Literary causation, common in academic writing.",
+"contrast": "ゆえに is literary; から is everyday.",
+"search": "ゆえに",
+"examples": [
+{
+"jp": "若さゆえに失敗も多い。",
+"en": "Because of his youth, he makes many mistakes."
+},
+{
+"jp": "我思う、ゆえに我あり。",
+"en": "I think, therefore I am."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜ようによっては",
+"meaning": "depending on how you ~",
+"formation": "Verb ます-stem + ようによっては",
+"notes": "The interpretation shifts with the approach taken.",
+"contrast": "ようによっては is about method; 次第で is about a factor.",
+"search": "ようによっては",
+"examples": [
+{
+"jp": "考えようによっては、いい機会だ。",
+"en": "Depending on how you look at it, it's a good opportunity."
+},
+{
+"jp": "やりようによっては成功する。",
+"en": "Depending on how it's done, it can succeed."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜わ〜わ",
+"meaning": "what with ~ and ~",
+"formation": "Plain form + わ + Plain form + わ",
+"notes": "Piles up troubles or excesses, colloquially.",
+"contrast": "わ〜わ piles up; し merely lists.",
+"search": "わ、",
+"examples": [
+{
+"jp": "雨は降るわ、風は吹くわで大変だった。",
+"en": "What with the rain and the wind, it was terrible."
+},
+{
+"jp": "泣くわ叫ぶわの大騒ぎだった。",
+"en": "There was a huge fuss, what with crying and shouting."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜をおいて",
+"meaning": "other than ~ (there is no)",
+"formation": "Noun + をおいて + negative",
+"notes": "Nobody or nothing else qualifies. Always with a negative.",
+"contrast": "をおいて excludes all others; 以外に merely says apart from.",
+"search": "をおいて",
+"examples": [
+{
+"jp": "彼をおいて適任者はいない。",
+"en": "There is no one suitable other than him."
+},
+{
+"jp": "今をおいて機会はない。",
+"en": "There is no opportunity other than now."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜をかわきりに",
+"meaning": "starting with ~",
+"formation": "Noun + を皮切りに",
+"notes": "The first of a series that follows.",
+"contrast": "を皮切りに starts a series; をはじめ names a representative.",
+"search": "皮切り",
+"examples": [
+{
+"jp": "東京を皮切りに全国を回る。",
+"en": "Starting with Tokyo, we will tour the whole country."
+},
+{
+"jp": "開会式を皮切りに行事が続く。",
+"en": "Beginning with the opening ceremony, events continue."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜をもって",
+"meaning": "with / as of ~",
+"formation": "Noun + をもって",
+"notes": "Formal: a means, or an effective date in announcements.",
+"contrast": "をもって is formal; で is everyday.",
+"search": "をもって",
+"examples": [
+{
+"jp": "本日をもって閉店いたします。",
+"en": "We will close as of today."
+},
+{
+"jp": "書面をもってお知らせします。",
+"en": "We will inform you in writing."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜をものともしない",
+"meaning": "pay no heed to ~",
+"formation": "Noun + をものともしない",
+"notes": "The attributive counterpart of をものともせず.",
+"contrast": "Same sense as をものともせず, used before a noun.",
+"search": "をものともしない",
+"examples": [
+{
+"jp": "危険をものともしない勇気があった。",
+"en": "He had courage that paid no heed to danger."
+},
+{
+"jp": "批判をものともしない姿勢。",
+"en": "An attitude that pays no heed to criticism."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜をものともせず",
+"meaning": "undaunted by ~",
+"formation": "Noun + をものともせず",
+"notes": "Praises someone who overcame a hardship.",
+"contrast": "をものともせず admires; にもかかわらず is neutral.",
+"search": "をものともせず",
+"examples": [
+{
+"jp": "彼は困難をものともせず、挑戦を続けた。",
+"en": "Undaunted by hardship, he kept on challenging."
+},
+{
+"jp": "嵐をものともせず出航した。",
+"en": "They set sail undaunted by the storm."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜をよそに",
+"meaning": "ignoring / in defiance of ~",
+"formation": "Noun + をよそに",
+"notes": "Disregards others' concern or opposition, usually with disapproval.",
+"contrast": "をよそに criticises; をものともせず admires.",
+"search": "をよそに",
+"examples": [
+{
+"jp": "親の心配をよそに、彼は旅に出た。",
+"en": "Ignoring his parents' worry, he set off on a journey."
+},
+{
+"jp": "反対をよそに計画は進んだ。",
+"en": "In defiance of opposition, the plan went ahead."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜を余儀なくされる",
+"reading": "〜をよぎなくされる",
+"meaning": "be forced to ~",
+"formation": "Noun + を余儀なくされる",
+"notes": "Formal: circumstances compel an unwelcome outcome.",
+"contrast": "を余儀なくされる is passive compulsion; ざるを得ない is the speaker's own reluctance.",
+"search": "余儀なく",
+"examples": [
+{
+"jp": "台風で中止を余儀なくされた。",
+"en": "We were forced to cancel because of the typhoon."
+},
+{
+"jp": "けがで引退を余儀なくされた。",
+"en": "He was forced into retirement by injury."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜を禁じ得ない",
+"reading": "〜をきんじえない",
+"meaning": "cannot suppress (a feeling)",
+"formation": "Noun (emotion) + を禁じ得ない",
+"notes": "Formal and literary; used with 涙, 怒り, 同情.",
+"contrast": "を禁じ得ない is literary; ずにはいられない is broader.",
+"search": "禁じ得ない",
+"examples": [
+{
+"jp": "その話には涙を禁じ得なかった。",
+"en": "I could not hold back tears at that story."
+},
+{
+"jp": "怒りを禁じ得ない。",
+"en": "I cannot suppress my anger."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜んがため",
+"meaning": "for the purpose of ~",
+"formation": "Verb ない-stem + んがため (する→せんがため)",
+"notes": "Strong literary purpose.",
+"contrast": "んがため is archaic; ために is everyday.",
+"search": "んがため",
+"examples": [
+{
+"jp": "生きんがために働く。",
+"en": "He works in order to live."
+},
+{
+"jp": "勝たんがために努力した。",
+"en": "He strove in order to win."
+}
+]
+},
+{
+"level": "N1",
+"point": "〜んばかり",
+"meaning": "almost as if about to ~",
+"formation": "Verb ない-stem + んばかり",
+"notes": "On the very verge, in vivid literary description.",
+"contrast": "んばかり is literary; そうだ is plain appearance.",
+"search": "んばかり",
+"examples": [
+{
+"jp": "彼は泣かんばかりの顔をしていた。",
+"en": "He had a face as if about to cry."
+},
+{
+"jp": "あふれんばかりの笑顔だった。",
+"en": "It was an overflowing smile."
+}
+]
+}
+]

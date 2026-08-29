@@ -5,3 +5,4 @@ __pycache__/
 transcript*.vtt
 transcript*.srt
 audio.*
+grammar/__pycache__/
