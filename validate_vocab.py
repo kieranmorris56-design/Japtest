@@ -37,46 +37,58 @@ def check_wordlist(path, tok):
     seen = {}
 
     for r in rows:
-        if len(r) < 7:
+        if len(r) < 6:
             problems.append(f"malformed row: {r[:2]}")
             continue
-        rank, word, reading, pos, meaning, example, trans = r[:7]
+        rank, word, reading, pos, meaning, examples_raw = r[:6]
 
         if word in seen:
             problems.append(f"#{rank} {word}: duplicate of #{seen[word]}")
         seen[word] = rank
-
-        for label, text in (("word", word), ("example", example)):
-            if FOREIGN.search(text):
-                problems.append(f"#{rank} {word}: foreign script in {label}")
-            if LATIN_RUN.search(text):
-                problems.append(f"#{rank} {word}: latin word in {label}: {text[:30]}")
         if not meaning.strip():
             problems.append(f"#{rank} {word}: empty meaning")
-        if not trans.strip():
-            problems.append(f"#{rank} {word}: empty translation")
-        if JAPANESE_RE.search(trans):
-            problems.append(f"#{rank} {word}: Japanese text in the translation")
-        if not example.endswith(("。", "！", "？", "」")):
-            problems.append(f"#{rank} {word}: example lacks final punctuation")
+        if FOREIGN.search(word) or LATIN_RUN.search(word):
+            problems.append(f"#{rank} {word}: foreign script in the word")
 
-        # Does the tokeniser find this word, with this reading, in the example?
-        hit = None
-        for t in tok.tokenize(example):
-            if t.base_form == word:
-                hit = t
-                break
-        if hit is None:
-            problems.append(f"#{rank} {word}: example does not use the word "
-                            f"| {example[:30]}")
+        pairs = [p for p in examples_raw.split(" || ") if p.strip()]
+        if not pairs:
+            problems.append(f"#{rank} {word}: no example sentences")
             continue
-        major = hit.part_of_speech.split(",")[0]
-        if major not in INFLECTING:
-            got = (hira(hit.reading) if hit.reading and hit.reading != "*"
-                   else hit.surface)
-            if reading and got and hira(reading) != got:
-                problems.append(f"#{rank} {word}: taught {hira(reading)} but "
-                                f"example reads it {got} | {example[:26]}")
+
+        # EVERY example must independently use the word, not just the first.
+        for n, pair in enumerate(pairs, 1):
+            if " :: " not in pair:
+                problems.append(f"#{rank} {word}: example {n} malformed")
+                continue
+            example, trans = pair.split(" :: ", 1)
+            tag = f"#{rank} {word}: example {n}"
+
+            if FOREIGN.search(example) or LATIN_RUN.search(example):
+                problems.append(f"{tag}: foreign script | {example[:28]}")
+            if not trans.strip():
+                problems.append(f"{tag}: empty translation")
+            if JAPANESE_RE.search(trans):
+                problems.append(f"{tag}: Japanese text in the translation")
+            if not example.endswith(("。", "！", "？", "」")):
+                problems.append(f"{tag}: no final punctuation | {example[:28]}")
+
+            hit = None
+            for t in tok.tokenize(example):
+                if t.base_form == word:
+                    hit = t
+                    break
+            if hit is None:
+                problems.append(f"{tag}: does not use the word | {example[:28]}")
+                continue
+            major = hit.part_of_speech.split(",")[0]
+            if major not in INFLECTING:
+                got = (hira(hit.reading) if hit.reading and hit.reading != "*"
+                       else hit.surface)
+                if reading and got and hira(reading) != got:
+                    problems.append(f"{tag}: taught {hira(reading)} but read "
+                                    f"{got} | {example[:24]}")
+        if len(set(p.split(" :: ")[0] for p in pairs)) != len(pairs):
+            problems.append(f"#{rank} {word}: duplicate example sentences")
     return len(rows), problems
 
 

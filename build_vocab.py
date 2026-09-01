@@ -332,31 +332,50 @@ def is_inflected(word, tok):
             and t.base_form and t.base_form != "*" and t.base_form != word)
 
 
-def pick_sentence(word, reading, pos, index, sentences, difficulty, common,
-                  readable):
-    """The most learnable sentence that genuinely uses this word."""
+def pick_sentences(word, reading, pos, index, sentences, difficulty, common,
+                   readable, want=2):
+    """Up to `want` distinct sentences that genuinely use this word.
+
+    Every returned sentence has passed the same test as the first: the
+    tokeniser found this word, in a compatible part of speech and with this
+    reading, in it. Adding a second example is only worth anything if it is a
+    different context, so candidates too similar to one already chosen are
+    skipped -- two near-identical sentences teach the shape of the sentence
+    rather than the word.
+    """
     majors = POS_COMPATIBLE.get(pos)
     if not majors:
-        return None
+        return [], 0
     readings = [""] if pos in ("verb", "i-adjective") else [hira(reading), ""]
     ids = []
     for major in majors:
         for rd in readings:
             ids.extend(index.get((word, rd, major), []))
+    ids = list(dict.fromkeys(ids))
+    support = len(ids)
     if not ids:
-        return None
+        return [], 0
 
-    support = len(set(ids))
-    best, best_score = None, None
-    for i in dict.fromkeys(ids):
+    scored = []
+    for i in ids:
         if not readable[i]:
             continue
         jp, en = sentences[i]
         unknown = sum(1 for l in difficulty[i] if l not in common)
-        score = unknown * 5 + abs(len(jp) - 20)
-        if best_score is None or score < best_score:
-            best, best_score = (jp, en), score
-    return (best, support) if best else None
+        scored.append((unknown * 5 + abs(len(jp) - 20), i, jp, en))
+    scored.sort(key=lambda t: (t[0], t[2]))
+
+    chosen, chosen_sets = [], []
+    for _score, i, jp, en in scored:
+        lemmas = set(difficulty[i])
+        if any(len(lemmas & prev) / max(1, len(lemmas | prev)) > 0.6
+               for prev in chosen_sets):
+            continue                       # near-duplicate of one already taken
+        chosen.append((jp, en))
+        chosen_sets.append(lemmas)
+        if len(chosen) >= want:
+            break
+    return chosen, support
 
 
 # ---------------------------------------------------------------------- card
@@ -383,7 +402,7 @@ def clean(t):
     return t.replace("\t", " ").replace("\r", " ").replace("\n", " ").strip()
 
 
-def make_card(rank, rec, jp, en, tok):
+def make_card(rank, rec, examples, tok):
     word, reading, pos = rec["display"], rec["reading"], rec["pos"]
     # Front deliberately carries no furigana: reading it is the recall task.
     front = (f'<div style="{S_POS}">{html.escape(pos)}</div>'
@@ -393,11 +412,14 @@ def make_card(rank, rec, jp, en, tok):
             f'<div style="{S_READ}">{html.escape(hira(reading))}</div>'
             f'<div style="{S_MEAN}">{html.escape(rec["meaning"])}</div>'
             f'<div style="{S_RANK}">frequency rank {rank}</div>'
-            f'<div style="{S_EXLBL}">Example</div>'
-            f'<div style="{S_EX}">'
-            f'<div style="{S_JP}">{ruby_sentence(jp, tok, word)}</div>'
-            f'<div style="{S_EN}">{html.escape(en)}</div></div>'
-            f'<div style="{S_ATTR}">{ATTRIB}</div>')
+            f'<div style="{S_EXLBL}">'
+            f'{"Examples" if len(examples) > 1 else "Example"}</div>'
+            + "".join(
+                f'<div style="{S_EX}">'
+                f'<div style="{S_JP}">{ruby_sentence(jp, tok, word)}</div>'
+                f'<div style="{S_EN}">{html.escape(en)}</div></div>'
+                for jp, en in examples)
+            + f'<div style="{S_ATTR}">{ATTRIB}</div>')
     band = ((rank - 1) // 500) * 500
     tags = f"rank::{band+1:04d}-{band+500:04d} pos::{pos.replace(' ', '-')}"
     return clean(front), clean(back), tags
@@ -412,6 +434,7 @@ def main():
     ap.add_argument("--corpus", default="/home/user/data/jpn-eng-examples.json")
     ap.add_argument("--cache", default="/home/user/data/corpus_index3.pkl")
     ap.add_argument("--count", type=int, default=5000)
+    ap.add_argument("--examples", type=int, default=2)
     ap.add_argument("--out", default="japanese_core5000_v2.txt")
     ap.add_argument("--apkg", default=None)
     ap.add_argument("--tsv", default="japanese_core5000_v2_wordlist.tsv")
@@ -458,18 +481,19 @@ def main():
         stem_verb = jm.get(disp + "る")
         if (stem_verb and stem_verb["pos"] == "verb" and stem_verb["common"]
                 and rec["pos"] != "verb" and len(rows) < 1500):
-            probe = pick_sentence(disp, rec["reading"], rec["pos"], index,
-                                  sentences, difficulty, common, readable)
-            if probe is None or probe[1] < 25:
+            _probe, probe_support = pick_sentences(
+                disp, rec["reading"], rec["pos"], index, sentences,
+                difficulty, common, readable, want=1)
+            if probe_support < 25:
                 dropped["frequency belongs to the verb form"] += 1
                 continue
 
-        hit = pick_sentence(disp, rec["reading"], rec["pos"],
-                            index, sentences, difficulty, common, readable)
-        if hit is None:
+        examples, support = pick_sentences(
+            disp, rec["reading"], rec["pos"], index, sentences, difficulty,
+            common, readable, want=args.examples)
+        if not examples:
             dropped["no sentence uses this word"] += 1
             continue
-        (jp_sent, en_sent), support = hit
 
         # A genuinely top-ranked word is everywhere in any corpus. A hiragana
         # word ranked near the top but scarcely used in this sense is drawing
@@ -482,9 +506,8 @@ def main():
             continue
 
         seen.add(disp)
-        rows.append(make_card(len(rows) + 1, rec, jp_sent, en_sent, tok) +
-                    (disp, rec["reading"], rec["pos"], rec["meaning"],
-                     jp_sent, en_sent))
+        rows.append(make_card(len(rows) + 1, rec, examples, tok) +
+                    (disp, rec["reading"], rec["pos"], rec["meaning"], examples))
         if len(rows) % 1000 == 0:
             print(f"  {len(rows)} cards ...")
 
@@ -495,11 +518,14 @@ def main():
             fh.write(f"{r[0]}\t{r[1]}\t{r[2]}\n")
 
     with open(args.tsv, "w", encoding="utf-8", newline="\n") as fh:
-        fh.write("rank\tword\treading\tpos\tmeaning\texample\ttranslation\n")
+        fh.write("rank\tword\treading\tpos\tmeaning\texamples\n")
         for i, r in enumerate(rows, 1):
-            fh.write("\t".join([str(i), r[3], hira(r[4]), r[5], r[6],
-                                r[7], r[8]]) + "\n")
+            ex = " || ".join(f"{jp} :: {en}" for jp, en in r[7])
+            fh.write("\t".join([str(i), r[3], hira(r[4]), r[5], r[6], ex]) + "\n")
 
+    counts = collections.Counter(len(r[7]) for r in rows)
+    print(f"\nexamples per card: " +
+          ", ".join(f"{n} example(s): {c}" for n, c in sorted(counts.items())))
     print(f"\nCards : {len(rows)}  ->  {args.out} "
           f"({os.path.getsize(args.out)/1024:.0f} KB)")
     print(f"List  : {args.tsv}")
