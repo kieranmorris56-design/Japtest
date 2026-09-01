@@ -132,14 +132,31 @@ def ruby_sentence(text, tok, target=None):
     return "".join(out)
 
 
+# JMdict's part of speech -> the tokeniser's major categories that may
+# legitimately realise it in a sentence. A card's example must use the word in
+# a compatible role, or the "example" is a different word that merely looks the
+# same.
+POS_COMPATIBLE = {
+    "noun": {"名詞"}, "pronoun": {"名詞"}, "na-adjective": {"名詞", "形容動詞"},
+    "counter": {"名詞"}, "number": {"名詞"},
+    "verb": {"動詞", "名詞"},            # 名詞 covers the する-noun pattern
+    "i-adjective": {"形容詞"},
+    "adverb": {"副詞", "名詞"},
+    "adjective": {"連体詞", "名詞", "形容詞"},
+    "conjunction": {"接続詞"},
+    "interjection": {"感動詞"},
+}
+
+
 # -------------------------------------------------------------------- JMdict
 
 POS_MAP = {
     "n": "noun", "n-adv": "noun", "n-t": "noun", "pn": "pronoun",
     "adj-i": "i-adjective", "adj-na": "na-adjective", "adj-no": "adjective",
     "adj-pn": "adjective", "adv": "adverb", "adv-to": "adverb",
-    "conj": "conjunction", "int": "interjection", "exp": "expression",
-    "num": "number", "ctr": "counter", "pref": "prefix", "suf": "suffix",
+    "conj": "conjunction", "int": "interjection",
+    "num": "number", "ctr": "counter", "pref": None, "suf": None,
+    "exp": None,
     "vs": "verb", "vk": "verb", "vz": "verb",
     "prt": None, "aux": None, "aux-v": None, "aux-adj": None, "cop": None,
 }
@@ -281,7 +298,8 @@ def build_index(corpus_path, cache_path):
             reading = hira(t.reading) if t.reading and t.reading != "*" else t.surface
             # Verbs and adjectives inflect, so the surface reading differs from
             # the lemma's; key those on the lemma alone.
-            key = (base, "") if major in ("動詞", "形容詞") else (base, reading)
+            key = ((base, "", major) if major in ("動詞", "形容詞")
+                   else (base, reading, major))
             index[key].append(i)
             lemmas.append(base)
             lemma_freq[base] += 1
@@ -299,17 +317,36 @@ def build_index(corpus_path, cache_path):
     return payload
 
 
+def is_inflected(word, tok):
+    """True if this is a conjugated form of another word, not a word itself.
+
+    受け is the 連用形 of 受ける and 続き of 続く; presented as nouns they inherit
+    the verb's frequency and teach a form rather than a word.
+    """
+    ts = list(tok.tokenize(word))
+    if len(ts) != 1:
+        return False
+    t = ts[0]
+    major = t.part_of_speech.split(",")[0]
+    return (major in ("動詞", "形容詞", "助動詞")
+            and t.base_form and t.base_form != "*" and t.base_form != word)
+
+
 def pick_sentence(word, reading, pos, index, sentences, difficulty, common,
                   readable):
     """The most learnable sentence that genuinely uses this word."""
-    keys = [(word, "")] if pos == "verb" or pos == "i-adjective" else \
-           [(word, hira(reading)), (word, "")]
+    majors = POS_COMPATIBLE.get(pos)
+    if not majors:
+        return None
+    readings = [""] if pos in ("verb", "i-adjective") else [hira(reading), ""]
     ids = []
-    for k in keys:
-        ids.extend(index.get(k, []))
+    for major in majors:
+        for rd in readings:
+            ids.extend(index.get((word, rd, major), []))
     if not ids:
         return None
 
+    support = len(set(ids))
     best, best_score = None, None
     for i in dict.fromkeys(ids):
         if not readable[i]:
@@ -319,7 +356,7 @@ def pick_sentence(word, reading, pos, index, sentences, difficulty, common,
         score = unknown * 5 + abs(len(jp) - 20)
         if best_score is None or score < best_score:
             best, best_score = (jp, en), score
-    return best
+    return (best, support) if best else None
 
 
 # ---------------------------------------------------------------------- card
@@ -373,7 +410,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--jmdict", default="/home/user/data/jmdict-eng-3.6.2.json")
     ap.add_argument("--corpus", default="/home/user/data/jpn-eng-examples.json")
-    ap.add_argument("--cache", default="/home/user/data/corpus_index2.pkl")
+    ap.add_argument("--cache", default="/home/user/data/corpus_index3.pkl")
     ap.add_argument("--count", type=int, default=5000)
     ap.add_argument("--out", default="japanese_core5000_v2.txt")
     ap.add_argument("--apkg", default=None)
@@ -410,16 +447,44 @@ def main():
             dropped["bare kana"] += 1
             continue
 
+        if is_inflected(disp, tok):
+            dropped["conjugated form, not a word"] += 1
+            continue
+
+        # A tokeniser labels 出来 and 教え as nouns, so is_inflected misses
+        # them, yet their rank comes from 出来る and 教える. If adding る yields
+        # a common verb and the noun itself is barely used, the frequency
+        # belongs to the verb. 動画 survives: 動画る is not a word.
+        stem_verb = jm.get(disp + "る")
+        if (stem_verb and stem_verb["pos"] == "verb" and stem_verb["common"]
+                and rec["pos"] != "verb" and len(rows) < 1500):
+            probe = pick_sentence(disp, rec["reading"], rec["pos"], index,
+                                  sentences, difficulty, common, readable)
+            if probe is None or probe[1] < 25:
+                dropped["frequency belongs to the verb form"] += 1
+                continue
+
         hit = pick_sentence(disp, rec["reading"], rec["pos"],
                             index, sentences, difficulty, common, readable)
         if hit is None:
             dropped["no sentence uses this word"] += 1
             continue
+        (jp_sent, en_sent), support = hit
+
+        # A genuinely top-ranked word is everywhere in any corpus. A hiragana
+        # word ranked near the top but scarcely used in this sense is drawing
+        # its rank from a homograph -- かも ranks 33rd as the particle pair,
+        # not as 鴨 the duck. Katakana and kanji words are exempt: アニメ and
+        # 動画 are legitimately modern and simply rare in an older corpus.
+        if (len(rows) < 800 and support < 25
+                and all("぀" <= c <= "ゟ" for c in disp)):
+            dropped["rank belongs to a homograph"] += 1
+            continue
 
         seen.add(disp)
-        rows.append(make_card(len(rows) + 1, rec, hit[0], hit[1], tok) +
+        rows.append(make_card(len(rows) + 1, rec, jp_sent, en_sent, tok) +
                     (disp, rec["reading"], rec["pos"], rec["meaning"],
-                     hit[0], hit[1]))
+                     jp_sent, en_sent))
         if len(rows) % 1000 == 0:
             print(f"  {len(rows)} cards ...")
 
